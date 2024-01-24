@@ -8,24 +8,20 @@ jobs:
       packages: write
       actions: read
     steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          # required
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.PRIVATE_KEY }}
-
       - name: git checkout, fetch & bot-user
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token.outputs.token }}
-          ref: ${{ github.head_ref }}
-          # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
-          persist-credentials: false
           fetch-depth: 0
       - run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
+
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+            # required
+            app-id: ${{ secrets.APP_ID }}
+            private-key: ${{ secrets.PRIVATE_KEY }}
       
       - name: Use the token
         env:
