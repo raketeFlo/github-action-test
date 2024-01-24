@@ -31,7 +31,7 @@ jobs:
         env:
             GH_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-            touch README.md
+            echo "hello" > TEST.md  
             git add .
             git commit -m "add: readme"
             git push origin development
