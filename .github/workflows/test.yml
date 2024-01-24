@@ -27,7 +27,7 @@ jobs:
       - run: |
               git config --global user.name github-actions
               git config --global user.email github-actions@github.com
-              echo "Was ist letzte Preis?" > TEST.md  
+              echo "Was ist letzte Preis??" > TEST.md  
               git add .
               git commit -m "add: readme"
               git push origin develop
