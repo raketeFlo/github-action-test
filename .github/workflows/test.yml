@@ -8,14 +8,6 @@ jobs:
       packages: write
       actions: read
     steps:
-      - name: git checkout, fetch & bot-user
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
@@ -23,11 +15,18 @@ jobs:
             app-id: ${{ secrets.APP_ID }}
             private-key: ${{ secrets.PRIVATE_KEY }}
       
-      - name: Use the token
-        env:
-            GH_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: |
-            echo "hello my friend" > TEST.md  
-            git add .
-            git commit -m "add: readme"
-            git push origin develop
+      - name: git checkout, fetch & bot-user
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+            token: ${{ steps.generate_token.outputs.token }}
+      - run: |
+              git config --global user.name github-actions
+              git config --global user.email github-actions@github.com
+              echo "hello my friend" > TEST.md  
+              git remote set-url origin https://
+              git config --global user.name github-actions
+              git config --global user.email github-actions@github.com
+              git add .
+              git commit -m "add: readme"
+              git push origin develop
