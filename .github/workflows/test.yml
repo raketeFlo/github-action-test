@@ -34,4 +34,4 @@ jobs:
             echo "hello" > TEST.md  
             git add .
             git commit -m "add: readme"
-            git push origin development
+            git push origin develop
