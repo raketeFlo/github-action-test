@@ -28,9 +28,6 @@ jobs:
               git config --global user.name github-actions
               git config --global user.email github-actions@github.com
               echo "hello my friend" > TEST.md  
-              git remote set-url origin https://
-              git config --global user.name github-actions
-              git config --global user.email github-actions@github.com
               git add .
               git commit -m "add: readme"
               git push origin develop
