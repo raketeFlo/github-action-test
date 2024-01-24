@@ -1,1 +1,1 @@
-hello my friend
+Was ist letzte Preis sir?????
